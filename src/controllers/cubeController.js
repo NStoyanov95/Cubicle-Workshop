@@ -2,7 +2,6 @@ const router = require('express').Router();
 const cubeManager = require('../managers/cubeManager');
 
 router.get('/create', (req, res) => {
-    console.log(cubeManager.getCubes());
     res.render('create');
 });
 
@@ -15,4 +14,8 @@ router.post('/create', (req, res) => {
     res.redirect('/');
 });
 
+router.get('/details/:id', (req, res) => {
+    const cube = cubeManager.getOne(req.params.id);
+    res.render('details', { ...cube });
+});
 module.exports = router;
