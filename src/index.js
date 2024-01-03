@@ -1,13 +1,14 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
 
+const expressConfigurator = require('./config/expressConfig');
 
 const app = express();
 
 const PORT = 3030;
 
 //Express config
-app.use(express.static('src/static'));
+expressConfigurator(app);
 
 //Handlebars config
 
