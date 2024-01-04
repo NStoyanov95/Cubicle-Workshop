@@ -2,8 +2,7 @@ const express = require('express');
 
 const expressConfigurator = require('./config/expressConfig');
 const handlebarsConfigurator = require('./config/handlebarsConfig');
-const homeController = require('./controllers/homeController');
-const cubeController = require('./controllers/cubeController');
+const routes = require('./routes');
 
 const app = express();
 
@@ -11,11 +10,6 @@ const PORT = 3030;
 
 expressConfigurator(app);
 handlebarsConfigurator(app);
-
-app.use(homeController); 
-app.use('/cubes',cubeController);
-app.get('*', (req, res)=>{
-    res.redirect('/404');
-});
+app.use(routes);
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}..`));
