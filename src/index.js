@@ -12,8 +12,8 @@ const PORT = 3030;
 expressConfigurator(app);
 handlebarsConfigurator(app);
 
-app.use(homeController);
-app.use(cubeController);
+app.use(homeController); 
+app.use('/cubes',cubeController);
 app.get('*', (req, res)=>{
     res.redirect('/404');
 });

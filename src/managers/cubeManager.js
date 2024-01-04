@@ -1,12 +1,31 @@
+const uniqid = require('uniqid');
+
 const cubes = [];
 
-exports.getCubes = () => cubes.slice();
+exports.getCubes = (search, from, to) => {
+    let filteredCubes = cubes.slice();
 
-exports.getOne = (id) => cubes.find(x => x.id == id)
+    if (search) {
+        filteredCubes = filteredCubes.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()));
+    }
+
+    if (from) {
+        filteredCubes = filteredCubes.filter(cube => cube.difficultyLevel >= Number(from));
+    }
+
+    if (to) {
+        filteredCubes = filteredCubes.filter(cube => cube.difficultyLevel <= Number(to));
+    }
+
+
+    return filteredCubes;
+};
+
+exports.getOne = (id) => cubes.find(x => x.id == id);
 
 exports.create = (cubeData) => {
     const currentCube = {
-        id: cubes.length + 1,
+        id: uniqid(),
         ...cubeData
     };
 
