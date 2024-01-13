@@ -1,5 +1,7 @@
 const router = require('express').Router();
+
 const cubeManager = require('../managers/cubeManager');
+const accessoryManager = require('../managers/accessoryManager');
 
 router.get('/create', (req, res) => {
     res.render('create');
@@ -15,6 +17,7 @@ router.post('/create', async (req, res) => {
 });
 
 router.get('/details/:id', async (req, res) => {
+
     const cube = await cubeManager.getOne(req.params.id).lean();
 
     if (!cube) {
@@ -23,4 +26,14 @@ router.get('/details/:id', async (req, res) => {
 
     res.render('details', { cube });
 });
+
+router.get('/:id/attach-accessory', async (req, res) => {
+
+    const cube = await cubeManager.getOne(req.params.id).lean();
+    const accessories = await accessoryManager.getAll().lean();
+    const hasAccessory = accessories.length > 0
+
+    res.render('accessory/attach', { cube, accessories, hasAccessory })
+})
+
 module.exports = router;

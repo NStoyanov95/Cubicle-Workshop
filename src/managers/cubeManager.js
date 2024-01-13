@@ -4,6 +4,7 @@ const Cube = require('../models/Cube');
 exports.getCubes = async (search, from, to) => {
     let filteredCubes = await Cube.find().lean(); 
 
+    //TODO: Make mongoose search
     if (search) {
         filteredCubes = filteredCubes.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()));
     }
