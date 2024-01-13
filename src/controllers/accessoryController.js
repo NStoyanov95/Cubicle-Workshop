@@ -10,7 +10,7 @@ router.get('/create', (req, res) => {
 router.post('/create', async (req, res) => {
     const { name, description, imageUrl } = req.body;
 
-   await  accessoryManager.createAccessory({ name, description, imageUrl })
+   await  accessoryManager.createAccessory({ name, description, imageUrl });
 
     res.redirect('/');
 });
