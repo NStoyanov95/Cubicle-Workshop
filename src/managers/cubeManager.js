@@ -22,8 +22,13 @@ exports.getCubes = async (search, from, to) => {
 
 exports.getOne = (id) => Cube.findById(id);
 
-exports.create = async (cubeData) => {
-    const cube = await Cube.create(cubeData)
+exports.create = (cubeData) =>  Cube.create(cubeData);
 
-    return cube;
+exports.attachAccessory = async (cubeId, accessoryId) => {
+   // Cube.findByIdAndUpdate(cubeId, {$push: {accessories: accessoryId}});
+   const cube = await Cube.findById(cubeId);
+   cube.accessories.push(accessoryId);
+
+   await cube.save();
+
 };
