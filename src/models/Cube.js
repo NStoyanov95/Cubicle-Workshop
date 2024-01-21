@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const cubeSchema = new mongoose.Schema({
+    creatorId: {
+      type: String,
+      required: true,
+    },
     name: String,
     description: String,
     imageUrl: String,
