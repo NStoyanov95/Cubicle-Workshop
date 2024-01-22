@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 
 const cubeSchema = new mongoose.Schema({
     creatorId: {
-      type: String,
-      required: true,
+        type: String,
+        required: true,
+        ref: 'User',
     },
     name: String,
     description: String,
