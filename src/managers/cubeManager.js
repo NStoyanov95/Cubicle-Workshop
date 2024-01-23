@@ -22,6 +22,7 @@ exports.getCubes = async (search, from, to) => {
 
 exports.getOne = (id) => Cube.findById(id).populate('accessories');
 exports.create = (cubeData) => Cube.create(cubeData);
+exports.delete = (id) => Cube.findByIdAndDelete(id);
 
 exports.attachAccessory = async (cubeId, accessoryId) => {
 
