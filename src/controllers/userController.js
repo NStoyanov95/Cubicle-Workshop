@@ -17,12 +17,12 @@ router.get('/login', (req, res) => {
     res.render('user/login');
 });
 
-router.post('/login', async(req, res) => {
-    const {username, password} = req.body;
+router.post('/login', async (req, res) => {
+    const { username, password } = req.body;
 
-   const token = await userManager.login(username, password);
+    const token = await userManager.login(username, password);
 
-    res.cookie('token', token, {httpOnly: true});
+    res.cookie('token', token, { httpOnly: true });
 
     res.redirect('/');
 });
